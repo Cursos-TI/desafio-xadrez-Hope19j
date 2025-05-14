@@ -1,32 +1,35 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+char board[8][8];
+
+void init_board() {
+    for (int i = 0; i < 8; i++)
+        for (int j = 0; j < 8; j++)
+            board[i][j] = '.';
+    board[1][0] = 'P'; // Peão
+}
+
+void print_board() {
+    for (int i = 7; i >= 0; i--) {
+        for (int j = 0; j < 8; j++) {
+            printf("%c ", board[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void move_piece(int x1, int y1, int x2, int y2) {
+    board[y2][x2] = board[y1][x1];
+    board[y1][x1] = '.';
+}
 
 int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
-
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
-
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
-
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
-
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
-
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
-
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
-
+    init_board();
+    print_board();
+    printf("Mover peça de x1 y1 para x2 y2 (ex: 0 1 0 2): ");
+    int x1, y1, x2, y2;
+    scanf("%d %d %d %d", &x1, &y1, &x2, &y2);
+    move_piece(x1, y1, x2, y2);
+    print_board();
     return 0;
 }
